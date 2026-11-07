@@ -1,0 +1,27 @@
+@use "abstracts" as *;
+
+.body {
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+}
+
+.skipLink {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  background: var(--color-volt);
+  border-radius: var(--radius-md);
+  transform: translateY(-200%);
+
+  &:focus-visible {
+    transform: none;
+  }
+}

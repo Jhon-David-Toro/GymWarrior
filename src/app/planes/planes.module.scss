@@ -1,0 +1,39 @@
+@use "abstracts" as *;
+
+.page {
+  padding-block: 3.5rem 5rem;
+}
+
+.plans {
+  margin-top: 3rem;
+}
+
+.faq {
+  max-width: 48rem;
+  margin-top: 5rem;
+
+  h2 {
+    font-size: $text-3xl;
+  }
+}
+
+.faqList {
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--color-line);
+
+  details {
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  summary {
+    padding: 1.125rem 0;
+    font-size: $text-lg;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  p {
+    padding-bottom: 1.25rem;
+    color: var(--color-slate);
+  }
+}

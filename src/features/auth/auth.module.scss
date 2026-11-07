@@ -1,0 +1,48 @@
+@use "abstracts" as *;
+
+.shell {
+  display: grid;
+  place-items: center;
+  min-height: calc(100dvh - #{$header-height} - 8rem);
+  padding: 3rem 1.25rem;
+}
+
+.card {
+  @include surface;
+
+  display: grid;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 27rem;
+  padding: 2rem 1.75rem;
+
+  @include up("sm") {
+    padding: 2.5rem;
+  }
+
+  h1 {
+    margin-top: 0.5rem;
+    font-size: $text-3xl;
+  }
+}
+
+.description {
+  color: var(--color-slate);
+}
+
+.form {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.switch {
+  font-size: $text-sm;
+  color: var(--color-slate);
+  text-align: center;
+
+  a {
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+}

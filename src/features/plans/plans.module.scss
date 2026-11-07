@@ -1,0 +1,122 @@
+@use "abstracts" as *;
+
+.grid {
+  display: grid;
+  gap: 1.25rem;
+  align-items: stretch;
+
+  @include up("md") {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem;
+  color: var(--color-ink);
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+}
+
+// El plan destacado se invierte: grafito con borde cian, como la placa de 20 kg del rack.
+.highlighted {
+  color: var(--color-chalk);
+  background: var(--color-steel);
+  border-color: var(--color-volt);
+  box-shadow: 0 0 0 1px var(--color-volt);
+
+  .access,
+  .description {
+    color: var(--color-mist);
+  }
+
+  .features svg {
+    color: var(--color-volt);
+  }
+}
+
+.flag {
+  position: absolute;
+  top: -0.8rem;
+  left: 1.75rem;
+  padding: 0.125rem 0.625rem;
+  font-size: $text-sm;
+  font-weight: 600;
+  color: var(--color-ink);
+  background: var(--color-volt);
+  border-radius: var(--radius-sm);
+}
+
+.name {
+  @include display($text-3xl);
+}
+
+.access {
+  margin-top: 0.25rem;
+  font-weight: 500;
+  color: var(--color-slate);
+}
+
+.price {
+  @include display($text-4xl);
+
+  margin-top: 1.25rem;
+  font-weight: 800;
+}
+
+.description {
+  margin-top: 0.5rem;
+  color: var(--color-slate);
+}
+
+.features {
+  @include reset-list;
+
+  display: grid;
+  gap: 0.625rem;
+  margin: 1.5rem 0;
+
+  li {
+    display: flex;
+    gap: 0.625rem;
+    align-items: flex-start;
+  }
+
+  svg {
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-top: 0.15rem;
+    color: var(--color-go);
+  }
+}
+
+.action {
+  margin-top: auto;
+}
+
+.subscribe {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.feedbackError,
+.feedbackSuccess {
+  font-size: $text-sm;
+  font-weight: 500;
+
+  a {
+    font-weight: 600;
+  }
+}
+
+.feedbackError {
+  color: var(--color-signal);
+}
+
+.feedbackSuccess {
+  color: var(--color-go);
+}

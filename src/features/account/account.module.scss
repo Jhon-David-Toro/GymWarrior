@@ -1,0 +1,268 @@
+@use "abstracts" as *;
+
+.greeting {
+  h1 {
+    font-size: $text-3xl;
+
+    @include up("sm") {
+      font-size: $text-4xl;
+    }
+  }
+
+  p {
+    margin-top: 0.375rem;
+    color: var(--color-slate);
+  }
+}
+
+.grid {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 2rem;
+
+  @include up("lg") {
+    grid-template-columns: 22rem 1fr;
+  }
+}
+
+.membership {
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+  justify-items: start;
+  padding: 1.5rem;
+  color: var(--color-chalk);
+  background: var(--color-steel);
+  border-radius: var(--radius-lg);
+
+  h2 {
+    font-size: $text-lg;
+    color: var(--color-mist);
+  }
+}
+
+.planName {
+  @include display($text-4xl);
+
+  font-weight: 800;
+  color: var(--color-volt);
+}
+
+.daysLeft {
+  font-size: $text-lg;
+
+  span {
+    font-weight: 700;
+  }
+}
+
+.noPlan {
+  color: var(--color-mist);
+}
+
+.facts {
+  display: flex;
+  gap: 2rem;
+  margin: 0.5rem 0 0;
+
+  dt {
+    font-size: $text-sm;
+    color: var(--color-mist);
+  }
+
+  dd {
+    margin: 0;
+    font-weight: 600;
+  }
+}
+
+.panel,
+.ordersSection {
+  @include surface;
+
+  padding: 1.5rem;
+}
+
+.ordersSection {
+  margin-top: 1.25rem;
+}
+
+.panelHead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+
+  h2 {
+    font-size: $text-2xl;
+  }
+
+  > a {
+    font-weight: 600;
+  }
+}
+
+.panelLinks {
+  display: flex;
+  gap: 1rem;
+
+  a {
+    display: inline-flex;
+    gap: 0.375rem;
+    align-items: center;
+    font-weight: 600;
+  }
+
+  svg {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+}
+
+.records {
+  @include reset-list;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: 0.75rem;
+
+  li {
+    display: grid;
+    gap: 0.125rem;
+    padding: 0.875rem 1rem;
+    background: var(--color-chalk);
+    border-radius: var(--radius-md);
+  }
+
+  span:first-child {
+    font-size: $text-sm;
+    color: var(--color-slate);
+  }
+
+  strong {
+    @include display($text-2xl);
+  }
+}
+
+.recordMeta {
+  font-size: $text-xs;
+  color: var(--color-slate);
+}
+
+.muted {
+  color: var(--color-slate);
+}
+
+// ─── Tablas ──────────────────────────────────────────────────────────────────
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 36rem;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 0.75rem 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  th {
+    font-size: $text-sm;
+    font-weight: 600;
+    color: var(--color-slate);
+  }
+
+  tbody tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .num {
+    text-align: right;
+  }
+
+  a {
+    font-weight: 600;
+  }
+}
+
+// ─── Detalle de pedido ───────────────────────────────────────────────────────
+
+.orderHeader {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+
+  h1 {
+    font-size: $text-3xl;
+  }
+
+  p {
+    color: var(--color-slate);
+  }
+}
+
+.confirmation {
+  margin-top: 1.5rem;
+}
+
+.orderItems {
+  @include reset-list;
+  @include surface;
+
+  padding: 0 1.25rem;
+  margin-top: 1.5rem;
+
+  li {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding-block: 1rem;
+    border-bottom: 1px solid var(--color-line);
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  img {
+    flex-shrink: 0;
+    width: 4rem;
+    height: 4rem;
+    object-fit: contain;
+  }
+}
+
+.itemName {
+  flex: 1;
+
+  a {
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  span {
+    display: block;
+    font-size: $text-sm;
+    color: var(--color-slate);
+  }
+}
+
+.orderTotal {
+  display: flex;
+  justify-content: space-between;
+  max-width: 22rem;
+  padding-top: 1rem;
+  margin: 1.5rem 0 0 auto;
+  font-size: $text-xl;
+  font-weight: 700;
+  border-top: 2px solid var(--color-ink);
+}

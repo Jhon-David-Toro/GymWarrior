@@ -1,0 +1,42 @@
+@use "abstracts" as *;
+
+.menu {
+  display: flex;
+  gap: 0.125rem;
+  align-items: center;
+}
+
+.item {
+  display: inline-flex;
+  gap: 0.375rem;
+  align-items: center;
+  height: 2.5rem;
+  padding-inline: 0.625rem;
+  font-weight: 500;
+  color: var(--color-mist);
+  text-decoration: none;
+  background: none;
+  border: 0;
+  border-radius: var(--radius-md);
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  @include hover {
+    color: var(--color-chalk);
+    background: var(--color-steel);
+  }
+}
+
+.label {
+  @include down("lg") {
+    @include visually-hidden;
+  }
+}
+
+.fallback {
+  width: 5.5rem;
+  height: 2.25rem;
+}

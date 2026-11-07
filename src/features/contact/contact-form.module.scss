@@ -1,0 +1,20 @@
+@use "abstracts" as *;
+
+.form {
+  display: grid;
+  gap: 1rem;
+  justify-items: stretch;
+
+  > button {
+    justify-self: start;
+  }
+}
+
+.row {
+  display: grid;
+  gap: 1rem;
+
+  @include up("sm") {
+    grid-template-columns: 1fr 1fr;
+  }
+}

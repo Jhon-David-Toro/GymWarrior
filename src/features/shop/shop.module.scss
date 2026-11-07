@@ -1,0 +1,163 @@
+@use "abstracts" as *;
+
+.grid {
+  @include reset-list;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+
+  @include up("md") {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  @include up("lg") {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  > li {
+    display: flex;
+  }
+}
+
+.card {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+}
+
+.media {
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+  padding: 1rem;
+  background: radial-gradient(circle at 50% 60%, #fff 0 45%, #e9edea 100%);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform $duration-base $ease-out;
+  }
+
+  @include hover {
+    img {
+      transform: scale(1.04);
+    }
+  }
+}
+
+.discount {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.875rem 1rem 1rem;
+}
+
+.category {
+  font-size: $text-xs;
+  font-weight: 600;
+  color: var(--color-slate);
+}
+
+.name {
+  font-family: var(--font-sans);
+  font-size: $text-base;
+  font-weight: 600;
+  line-height: 1.3;
+
+  a {
+    text-decoration: none;
+
+    @include hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.price {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: baseline;
+  margin-top: 0.25rem;
+  font-weight: 600;
+
+  s {
+    font-size: $text-sm;
+    font-weight: 400;
+    color: var(--color-slate);
+  }
+}
+
+.priceLg {
+  @include display($text-3xl);
+
+  s {
+    font-family: var(--font-sans);
+    font-size: $text-lg;
+  }
+}
+
+.lowStock {
+  font-size: $text-sm;
+  font-weight: 600;
+  color: var(--color-caution-text);
+}
+
+.cardAction {
+  padding-top: 0.75rem;
+  margin-top: auto;
+}
+
+.filter ul {
+  @include reset-list;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filter a {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  height: 2.5rem;
+  padding: 0 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+
+  span {
+    font-size: $text-sm;
+    color: var(--color-slate);
+  }
+
+  @include hover {
+    border-color: var(--color-ink);
+  }
+
+  &[aria-current="page"] {
+    color: var(--color-chalk);
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+
+    span {
+      color: var(--color-mist);
+    }
+  }
+}

@@ -1,0 +1,4 @@
+// Punto de entrada para los módulos SCSS: `@use "abstracts" as *;`
+// Solo expone variables, funciones y mixins (no genera CSS).
+@forward "tokens";
+@forward "mixins";

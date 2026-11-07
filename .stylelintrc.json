@@ -1,0 +1,17 @@
+{
+  "extends": ["stylelint-config-standard-scss", "stylelint-config-recess-order"],
+  "rules": {
+    "selector-class-pattern": [
+      "^[a-z][a-zA-Z0-9]*$",
+      { "message": "Usa camelCase en las clases de CSS Modules (p. ej. .productCard)" }
+    ],
+    "selector-pseudo-class-no-unknown": [true, { "ignorePseudoClasses": ["global"] }],
+    "scss/at-mixin-pattern": "^[a-z][a-z0-9-]*$",
+    "scss/dollar-variable-pattern": "^[a-z][a-z0-9-]*$",
+    "custom-property-pattern": "^[a-z][a-z0-9-]*$",
+    "keyframes-name-pattern": "^[a-z][a-zA-Z0-9-]*$",
+    "no-descending-specificity": null,
+    "declaration-property-value-no-unknown": null
+  },
+  "ignoreFiles": [".next/**", "node_modules/**", "coverage/**"]
+}

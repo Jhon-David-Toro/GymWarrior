@@ -1,0 +1,25 @@
+name: Reporte de error
+description: Algo no funciona como debería
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: ¿Qué pasó?
+      description: Qué esperabas y qué ocurrió en su lugar.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Pasos para reproducirlo
+      placeholder: |
+        1. Ir a /tienda
+        2. Agregar un producto
+        3. ...
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Navegador y dispositivo

@@ -1,0 +1,80 @@
+@use "sass:map";
+@use "tokens" as *;
+
+/// Media query mobile-first: `@include up("md") { ... }`
+@mixin up($name) {
+  $value: map.get($breakpoints, $name);
+
+  @if not $value {
+    @error "Breakpoint desconocido: #{$name}";
+  }
+
+  @media (width >= $value) {
+    @content;
+  }
+}
+
+@mixin down($name) {
+  $value: map.get($breakpoints, $name);
+
+  @media (width < $value) {
+    @content;
+  }
+}
+
+@mixin container {
+  width: 100%;
+  max-width: $container-max;
+  padding-inline: 1.25rem;
+  margin-inline: auto;
+
+  @include up("sm") {
+    padding-inline: 2rem;
+  }
+}
+
+@mixin focus-ring($offset: 2px) {
+  outline: 3px solid var(--color-volt);
+  outline-offset: $offset;
+}
+
+@mixin display($size: $text-3xl) {
+  font-family: var(--font-display);
+  font-size: $size;
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.005em;
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 0;
+  clip-path: inset(50%);
+}
+
+/// Superficie elevada sobre el fondo de tiza.
+@mixin surface {
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+}
+
+@mixin hover {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin reset-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}

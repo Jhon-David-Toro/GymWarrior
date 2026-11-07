@@ -1,0 +1,104 @@
+@use "abstracts" as *;
+
+.footer {
+  color: var(--color-mist);
+  background: var(--color-ink);
+}
+
+.inner {
+  @include container;
+
+  display: grid;
+  gap: 2.5rem;
+  padding-block: 4rem 3rem;
+
+  @include up("md") {
+    grid-template-columns: 1.6fr repeat(3, 1fr);
+  }
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: $text-2xl;
+  font-weight: 800;
+  color: var(--color-chalk);
+}
+
+.about {
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+}
+
+.hours {
+  display: grid;
+  gap: 0.25rem;
+  max-width: 22rem;
+  padding: 0;
+  margin-top: 0.5rem;
+  font-size: $text-sm;
+  list-style: none;
+
+  li {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+
+  span:last-child {
+    color: var(--color-chalk);
+  }
+}
+
+.column {
+  h2 {
+    margin-bottom: 0.75rem;
+    font-size: $text-lg;
+    color: var(--color-chalk);
+  }
+
+  ul {
+    display: grid;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+
+    @include hover {
+      color: var(--color-chalk);
+      text-decoration: underline;
+    }
+  }
+}
+
+.bottom {
+  @include container;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  padding-block: 1.5rem;
+  font-size: $text-sm;
+  border-top: 1px solid var(--color-iron);
+}
+
+.social {
+  display: flex;
+  gap: 1.25rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  a {
+    text-decoration: none;
+
+    @include hover {
+      color: var(--color-chalk);
+    }
+  }
+}

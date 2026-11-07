@@ -1,0 +1,94 @@
+{
+  "name": "gymwarrior",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint . --max-warnings=0",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "db:seed": "tsx scripts/seed.ts",
+    "db:setup": "pnpm db:migrate && pnpm db:seed",
+    "check": "pnpm lint && pnpm lint:styles && pnpm typecheck && pnpm test",
+    "prepare": "husky",
+    "lint:styles": "stylelint \"src/**/*.scss\""
+  },
+  "dependencies": {
+    "better-auth": "1.7.18",
+    "clsx": "^2.1.1",
+    "drizzle-orm": "^0.45.4",
+    "lucide-react": "^1.70.0",
+    "next": "16.4.5",
+    "pg": "^8.23.1",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "server-only": "^0.0.1",
+    "sonner": "^2.0.8",
+    "zod": "^4.6.7",
+    "zustand": "^5.1.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.2.4",
+    "@commitlint/config-conventional": "^21.2.4",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.8",
+    "@types/node": "^22.20.5",
+    "@types/pg": "^8.23.1",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^6.2.1",
+    "@vitest/coverage-v8": "^5.1.0",
+    "dotenv": "^18.0.9",
+    "drizzle-kit": "^0.31.11",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.5",
+    "husky": "^9.1.7",
+    "jsdom": "^31.0.0",
+    "lint-staged": "^17.6.0",
+    "prettier": "^3.9.10",
+    "sass": "^1.108.1",
+    "stylelint": "^17.16.0",
+    "stylelint-config-recess-order": "^7.10.0",
+    "stylelint-config-standard-scss": "^17.0.0",
+    "tsx": "^4.23.15",
+    "typescript": "^5",
+    "vitest": "^5.1.0"
+  },
+  "packageManager": "pnpm@10.28.0",
+  "description": "GymWarrior — plataforma web para gimnasio: planes, tienda, calculadoras de salud y panel de administración.",
+  "license": "MIT",
+  "author": "Jhon David Toro <toromurieljhon@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jhon-David-Toro/GymWarrior.git"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,mjs}": [
+      "eslint --fix --max-warnings=0",
+      "prettier --write"
+    ],
+    "*.scss": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
+  }
+}

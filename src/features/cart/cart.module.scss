@@ -1,0 +1,222 @@
+@use "abstracts" as *;
+
+.trigger {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--color-mist);
+  background: none;
+  border: 0;
+  border-radius: var(--radius-md);
+
+  svg {
+    width: 1.375rem;
+    height: 1.375rem;
+  }
+
+  @include hover {
+    color: var(--color-chalk);
+    background: var(--color-steel);
+  }
+}
+
+.count {
+  position: absolute;
+  top: 0.125rem;
+  right: 0.125rem;
+  display: grid;
+  place-items: center;
+  min-width: 1.125rem;
+  height: 1.125rem;
+  padding-inline: 0.25rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  background: var(--color-volt);
+  border-radius: 999px;
+}
+
+// ─── Drawer ─────────────────────────────────────────────────────────────────
+
+.drawer {
+  width: 100%;
+  max-width: 26rem;
+  height: 100dvh;
+  max-height: none;
+  padding: 0;
+  margin: 0 0 0 auto;
+  color: var(--color-ink);
+  background: var(--color-chalk);
+  border: 0;
+
+  &::backdrop {
+    background: rgb(13 24 33 / 55%);
+  }
+
+  &[open] {
+    animation: slide-in $duration-base $ease-out;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--color-line);
+
+  h2 {
+    font-size: $text-2xl;
+  }
+}
+
+.close {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: none;
+  border: 0;
+  border-radius: var(--radius-md);
+
+  @include hover {
+    background: color-mix(in srgb, var(--color-ink) 7%, transparent);
+  }
+}
+
+.emptyCart {
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+  padding: 1.5rem 1.25rem;
+  color: var(--color-slate);
+}
+
+.lines {
+  flex: 1;
+  padding: 0 1.25rem;
+  margin: 0;
+  overflow-y: auto;
+}
+
+.panelFooter {
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: var(--color-paper);
+  border-top: 1px solid var(--color-line);
+}
+
+.subtotal {
+  display: flex;
+  justify-content: space-between;
+  font-size: $text-lg;
+}
+
+// ─── Línea de carrito ───────────────────────────────────────────────────────
+
+.line {
+  display: flex;
+  gap: 1rem;
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.thumb {
+  flex-shrink: 0;
+  width: 4.5rem;
+  height: 4.5rem;
+  object-fit: contain;
+  background: var(--color-paper);
+  border-radius: var(--radius-md);
+}
+
+.lineBody {
+  display: grid;
+  flex: 1;
+  gap: 0.25rem;
+}
+
+.lineName {
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.linePrice {
+  color: var(--color-slate);
+}
+
+.lineControls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.25rem;
+}
+
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+
+  button {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    background: none;
+    border: 0;
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.35;
+    }
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  output {
+    min-width: 2rem;
+    font-weight: 600;
+    text-align: center;
+  }
+}
+
+.remove {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  color: var(--color-slate);
+  background: none;
+  border: 0;
+  border-radius: var(--radius-md);
+
+  svg {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  @include hover {
+    color: var(--color-signal-text);
+    background: color-mix(in srgb, var(--color-signal) 10%, transparent);
+  }
+}

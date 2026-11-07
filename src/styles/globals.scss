@@ -1,0 +1,123 @@
+@use "abstracts" as *;
+
+/*
+ * GymWarrior — tokens de diseño
+ * Base: tiza (el fondo claro de la sala) y grafito azulado (el acero pintado de las máquinas).
+ * Acento: el cian del logo, reservado para las acciones principales.
+ */
+:root {
+  --color-ink: #0d1821;
+  --color-steel: #15232f;
+  --color-iron: #2a3c4c;
+  --color-slate: #56687a;
+  --color-mist: #9aabb8;
+  --color-chalk: #f1f3f0;
+  --color-paper: #fff;
+  --color-line: #d9dfdc;
+  --color-volt: #2cc5ea;
+  --color-volt-hover: #5bd4f0;
+  --color-volt-strong: #0e8fb5;
+  --color-volt-text: #06526a;
+  --color-signal: #e5483a;
+  --color-signal-text: #a52a1f;
+  --color-go: #2f9e6a;
+  --color-go-text: #1c6745;
+  --color-caution: #c98a12;
+  --color-caution-text: #7a5307;
+  --font-sans: var(--font-barlow), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-barlow-condensed), var(--font-barlow), ui-sans-serif, sans-serif;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --header-height: #{$header-height};
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-height) + 1rem);
+}
+
+body {
+  min-height: 100dvh;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: $text-base;
+  line-height: 1.55;
+  color: var(--color-ink);
+  background: var(--color-chalk);
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  @include focus-ring;
+}
+
+::selection {
+  color: var(--color-ink);
+  background: var(--color-volt);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+// ─── Utilidades globales (muy pocas, a propósito) ───────────────────────────
+
+.srOnly {
+  @include visually-hidden;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
