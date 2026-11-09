@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 
 import { Skeleton } from "@/components/ui/misc";
-import styles from "@/features/admin/admin.module.scss";
+import styles from "@/features/admin/shared/admin.module.scss";
 import { formatCOP } from "@/lib/format";
 import { getAdminStats } from "@/server/queries/admin";
 

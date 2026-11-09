@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 
-import { CartButton } from "@/features/cart/cart-button";
+import { CartButton } from "@/features/cart/shared/cart-button";
 
 import styles from "./header.module.scss";
 import { MainNav, MainNavFallback } from "./main-nav";

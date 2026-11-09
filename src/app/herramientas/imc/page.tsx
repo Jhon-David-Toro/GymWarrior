@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 import { PageContainer, SectionHeading } from "@/components/ui/misc";
-import { BmiCalculator } from "@/features/health/bmi-calculator";
-import { MethodNote } from "@/features/health/method-note";
+import { BmiCalculator } from "@/features/health/bmi/bmi-calculator";
+import { MethodNote } from "@/features/health/shared/method-note";
 
 export const metadata: Metadata = {
   title: "Calculadora de IMC",

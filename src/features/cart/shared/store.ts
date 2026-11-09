@@ -38,24 +38,32 @@ export const useCart = create<CartState>()(
       isOpen: false,
       add: (item, quantity = 1) =>
         set((state) => {
-          const existing = state.items.find((i) => i.productId === item.productId);
+          const existing = state.items.find((cartItem) => cartItem.productId === item.productId);
           const items = existing
-            ? state.items.map((i) =>
-                i.productId === item.productId
-                  ? { ...i, ...item, quantity: clampQty(i.quantity + quantity, item.stock) }
-                  : i,
+            ? state.items.map((cartItem) =>
+                cartItem.productId === item.productId
+                  ? {
+                      ...cartItem,
+                      ...item,
+                      quantity: clampQty(cartItem.quantity + quantity, item.stock),
+                    }
+                  : cartItem,
               )
             : [...state.items, { ...item, quantity: clampQty(quantity, item.stock) }];
           return { items, isOpen: true };
         }),
       setQuantity: (productId, quantity) =>
         set((state) => ({
-          items: state.items.map((i) =>
-            i.productId === productId ? { ...i, quantity: clampQty(quantity, i.stock) } : i,
+          items: state.items.map((cartItem) =>
+            cartItem.productId === productId
+              ? { ...cartItem, quantity: clampQty(quantity, cartItem.stock) }
+              : cartItem,
           ),
         })),
       remove: (productId) =>
-        set((state) => ({ items: state.items.filter((i) => i.productId !== productId) })),
+        set((state) => ({
+          items: state.items.filter((cartItem) => cartItem.productId !== productId),
+        })),
       clear: () => set({ items: [] }),
       setOpen: (isOpen) => set({ isOpen }),
     }),
@@ -68,9 +76,10 @@ export const useCart = create<CartState>()(
   ),
 );
 
-export const selectCount = (s: CartState) => s.items.reduce((n, i) => n + i.quantity, 0);
-export const selectSubtotal = (s: CartState) =>
-  s.items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+export const selectCount = (state: CartState) =>
+  state.items.reduce((total, item) => total + item.quantity, 0);
+export const selectSubtotal = (state: CartState) =>
+  state.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
 const subscribeHydration = (cb: () => void) => useCart.persist.onFinishHydration(cb);
 

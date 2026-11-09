@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/misc";
-import { AddToCartButton } from "@/features/cart/add-to-cart-button";
+import { AddToCartButton } from "@/features/cart/shared/add-to-cart-button";
 import { CATEGORY_LABELS } from "@/lib/constants";
 import { discountPercent } from "@/lib/format";
 import { type CatalogProduct } from "@/server/queries/catalog";

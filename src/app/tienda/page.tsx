@@ -27,9 +27,9 @@ async function Catalog({ searchParams }: { searchParams: PageProps<"/tienda">["s
     APPAREL: 0,
     ACCESSORIES: 0,
   };
-  for (const p of products) counts[p.category] += 1;
+  for (const product of products) counts[product.category] += 1;
 
-  const visible = active ? products.filter((p) => p.category === active) : products;
+  const visible = active ? products.filter((product) => product.category === active) : products;
 
   return (
     <>
@@ -54,8 +54,8 @@ function CatalogSkeleton() {
     <>
       <Skeleton style={{ height: "2.5rem", maxWidth: "28rem" }} />
       <div className={styles.skeletonGrid}>
-        {Array.from({ length: 8 }, (_, i) => (
-          <Skeleton key={i} style={{ aspectRatio: "3 / 4.4" }} />
+        {Array.from({ length: 8 }, (_, index) => (
+          <Skeleton key={index} style={{ aspectRatio: "3 / 4.4" }} />
         ))}
       </div>
     </>

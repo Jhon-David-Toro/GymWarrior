@@ -5,7 +5,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { PageContainer } from "@/components/ui/misc";
-import { AddToCartButton } from "@/features/cart/add-to-cart-button";
+import { AddToCartButton } from "@/features/cart/shared/add-to-cart-button";
 import { Price } from "@/features/shop/price";
 import { CATEGORY_LABELS, CATEGORY_SLUGS } from "@/lib/constants";
 import { cn } from "@/lib/utils";

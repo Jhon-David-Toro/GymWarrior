@@ -5,7 +5,7 @@ import { Select } from "@/components/ui/field";
 import { SubmitButton } from "@/components/ui/submit-button";
 import tableStyles from "@/features/account/account.module.scss";
 import { OrderStatusBadge } from "@/features/account/order-status-badge";
-import styles from "@/features/admin/admin.module.scss";
+import styles from "@/features/admin/shared/admin.module.scss";
 import { ORDER_STATUS_LABELS } from "@/lib/constants";
 import { formatCOP, formatDate } from "@/lib/format";
 import { updateOrderStatusAction } from "@/server/actions/admin";

@@ -6,7 +6,7 @@ import { Suspense } from "react";
 import { Button, ButtonLink, buttonStyles } from "@/components/ui/button";
 import { Badge, Skeleton } from "@/components/ui/misc";
 import tableStyles from "@/features/account/account.module.scss";
-import styles from "@/features/admin/admin.module.scss";
+import styles from "@/features/admin/shared/admin.module.scss";
 import { CATEGORY_LABELS } from "@/lib/constants";
 import { formatCOP } from "@/lib/format";
 import { toggleProductActiveAction } from "@/server/actions/admin";

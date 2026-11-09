@@ -2,8 +2,8 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 import { Skeleton } from "@/components/ui/misc";
-import styles from "@/features/admin/admin.module.scss";
-import { ProductForm } from "@/features/admin/product-form";
+import styles from "@/features/admin/shared/admin.module.scss";
+import { ProductForm } from "@/features/admin/products/product-form";
 import { getAdminProduct } from "@/server/queries/admin";
 
 export const metadata = { title: "Editar producto" };

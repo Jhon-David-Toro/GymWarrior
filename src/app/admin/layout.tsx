@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 
 import { PageContainer } from "@/components/ui/misc";
-import styles from "@/features/admin/admin.module.scss";
-import { AdminNav, AdminNavFallback } from "@/features/admin/admin-nav";
+import styles from "@/features/admin/shared/admin.module.scss";
+import { AdminNav, AdminNavFallback } from "@/features/admin/shared/admin-nav";
 
 export const metadata: Metadata = {
   title: { default: "Administración", template: "%s · Admin GymWarrior" },

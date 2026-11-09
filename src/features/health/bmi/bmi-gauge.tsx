@@ -1,6 +1,6 @@
 import { classifyBmi } from "@/lib/health/bmi";
 
-import styles from "./health.module.scss";
+import styles from "../shared/health.module.scss";
 
 const MIN = 15;
 const MAX = 40;

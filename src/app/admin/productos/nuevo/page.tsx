@@ -1,8 +1,8 @@
 import { Suspense } from "react";
 
 import { Skeleton } from "@/components/ui/misc";
-import styles from "@/features/admin/admin.module.scss";
-import { ProductForm } from "@/features/admin/product-form";
+import styles from "@/features/admin/shared/admin.module.scss";
+import { ProductForm } from "@/features/admin/products/product-form";
 import { requireAdmin } from "@/server/auth/session";
 
 export const metadata = { title: "Nuevo producto" };

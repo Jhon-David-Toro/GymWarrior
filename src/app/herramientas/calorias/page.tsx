@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 import { PageContainer, SectionHeading } from "@/components/ui/misc";
-import { CalorieCalculator } from "@/features/health/calorie-calculator";
-import { MethodNote } from "@/features/health/method-note";
+import { CalorieCalculator } from "@/features/health/calorie/calorie-calculator";
+import { MethodNote } from "@/features/health/shared/method-note";
 
 export const metadata: Metadata = {
   title: "Calculadora de calorías",

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 
 import { PageContainer, SectionHeading, Skeleton } from "@/components/ui/misc";
-import { CheckoutView } from "@/features/cart/checkout-view";
+import { CheckoutView } from "@/features/cart/checkout/checkout-view";
 import { getCurrentUser } from "@/server/auth/session";
 
 export const metadata: Metadata = { title: "Carrito", robots: { index: false } };
