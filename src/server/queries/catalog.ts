@@ -5,10 +5,6 @@ import { cacheLife, cacheTag } from "next/cache";
 
 import { db, schema } from "@/server/db";
 
-/**
- * Lecturas públicas del catálogo. Se cachean en el servidor y se invalidan
- * con `updateTag(CACHE_TAGS.products)` cuando cambian precios o stock.
- */
 export const CACHE_TAGS = {
   products: "products",
   product: (slug: string) => `product:${slug}`,
@@ -31,6 +27,10 @@ const publicProductColumns = {
 
 export type CatalogProduct = Pick<schema.Product, keyof typeof publicProductColumns>;
 
+/**
+ * Retrieves all active products from catalog
+ * @returns Active products ordered by featured status, category and name
+ */
 export async function getActiveProducts(): Promise<CatalogProduct[]> {
   "use cache";
   cacheTag(CACHE_TAGS.products);
@@ -47,6 +47,11 @@ export async function getActiveProducts(): Promise<CatalogProduct[]> {
   });
 }
 
+/**
+ * Retrieves single product by slug
+ * @param slug - Product slug identifier
+ * @returns Product or null if not found or inactive
+ */
 export async function getProductBySlug(slug: string): Promise<CatalogProduct | null> {
   "use cache";
   cacheTag(CACHE_TAGS.products, CACHE_TAGS.product(slug));
@@ -56,9 +61,14 @@ export async function getProductBySlug(slug: string): Promise<CatalogProduct | n
     columns: publicProductColumns,
     where: and(eq(schema.product.slug, slug), eq(schema.product.isActive, true)),
   });
+
   return product ?? null;
 }
 
+/**
+ * Retrieves all active membership plans
+ * @returns Active plans ordered by sort order
+ */
 export async function getActivePlans(): Promise<schema.Plan[]> {
   "use cache";
   cacheTag(CACHE_TAGS.plans);
@@ -70,10 +80,16 @@ export async function getActivePlans(): Promise<schema.Plan[]> {
   });
 }
 
+/**
+ * Retrieves all gym trainers
+ * @returns Trainers ordered by sort order
+ */
 export async function getTrainers(): Promise<schema.Trainer[]> {
   "use cache";
   cacheTag(CACHE_TAGS.trainers);
   cacheLife("days");
 
-  return db.query.trainer.findMany({ orderBy: asc(schema.trainer.sortOrder) });
+  return db.query.trainer.findMany({
+    orderBy: asc(schema.trainer.sortOrder),
+  });
 }

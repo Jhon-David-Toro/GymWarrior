@@ -9,16 +9,28 @@ import { bmiInputSchema, calorieInputSchema } from "@/lib/validations";
 import { getCurrentUser } from "@/server/auth/session";
 import { db, schema } from "@/server/db";
 
+const ERROR_MESSAGES = {
+  UNAUTHORIZED: "Inicia sesión para guardar tu historial.",
+  INVALID_DATA: "Datos inválidos.",
+} as const;
+
+const SUCCESS_MESSAGE = "Guardado en tu historial.";
+
 /**
- * Guarda un resultado en el historial. El cálculo se repite en el servidor a partir
- * de los datos de entrada: nunca se guarda un valor enviado por el cliente.
+ * Saves BMI calculation to user history
+ * @param input - BMI calculation input data
+ * @returns Action state with success or error message
  */
 export async function saveBmiAction(input: unknown): Promise<ActionState> {
   const user = await getCurrentUser();
-  if (!user) return { status: "error", message: "Inicia sesión para guardar tu historial." };
+  if (!user) {
+    return { status: "error", message: ERROR_MESSAGES.UNAUTHORIZED };
+  }
 
   const parsed = bmiInputSchema.safeParse(input);
-  if (!parsed.success) return { status: "error", message: "Datos inválidos." };
+  if (!parsed.success) {
+    return { status: "error", message: ERROR_MESSAGES.INVALID_DATA };
+  }
 
   const result = calculateBmi(parsed.data);
   await db.insert(schema.healthRecord).values({
@@ -29,15 +41,24 @@ export async function saveBmiAction(input: unknown): Promise<ActionState> {
   });
 
   refresh();
-  return { status: "success", message: "Guardado en tu historial." };
+  return { status: "success", message: SUCCESS_MESSAGE };
 }
 
+/**
+ * Saves calorie calculation to user history
+ * @param input - Calorie calculation input data
+ * @returns Action state with success or error message
+ */
 export async function saveCaloriesAction(input: unknown): Promise<ActionState> {
   const user = await getCurrentUser();
-  if (!user) return { status: "error", message: "Inicia sesión para guardar tu historial." };
+  if (!user) {
+    return { status: "error", message: ERROR_MESSAGES.UNAUTHORIZED };
+  }
 
   const parsed = calorieInputSchema.safeParse(input);
-  if (!parsed.success) return { status: "error", message: "Datos inválidos." };
+  if (!parsed.success) {
+    return { status: "error", message: ERROR_MESSAGES.INVALID_DATA };
+  }
 
   const result = calculateCalories(parsed.data);
   await db.insert(schema.healthRecord).values({
@@ -48,5 +69,5 @@ export async function saveCaloriesAction(input: unknown): Promise<ActionState> {
   });
 
   refresh();
-  return { status: "success", message: "Guardado en tu historial." };
+  return { status: "success", message: SUCCESS_MESSAGE };
 }
