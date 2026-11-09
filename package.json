@@ -67,7 +67,7 @@
     "typescript": "^5",
     "vitest": "^5.1.0"
   },
-  "packageManager": "pnpm@10.28.0",
+  "packageManager": "pnpm@12.18.0",
   "description": "GymWarrior — plataforma web para gimnasio: planes, tienda, calculadoras de salud y panel de administración.",
   "license": "MIT",
   "author": "Jhon David Toro <toromurieljhon@gmail.com>",
