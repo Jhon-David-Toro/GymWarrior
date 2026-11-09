@@ -2,7 +2,7 @@ import { Field, Input } from "@/components/ui/field";
 import { MIN_PRODUCT_PRICE, MIN_STOCK, PRICE_STEP } from "@/lib/constants";
 
 import type { ProductPricingFieldsProps } from "./product-pricing-fields.types";
-import styles from "./admin.module.scss";
+import styles from "../shared/admin.module.scss";
 
 /**
  * Product pricing and inventory fields

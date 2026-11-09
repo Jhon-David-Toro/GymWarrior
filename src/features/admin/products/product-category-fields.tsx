@@ -2,7 +2,7 @@ import { Checkbox, Field, Input, Select } from "@/components/ui/field";
 import { CATEGORY_LABELS } from "@/lib/constants";
 
 import type { ProductCategoryFieldsProps } from "./product-category-fields.types";
-import styles from "./admin.module.scss";
+import styles from "../shared/admin.module.scss";
 
 /**
  * Product category, image, and visibility fields

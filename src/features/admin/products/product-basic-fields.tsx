@@ -1,7 +1,7 @@
 import { Field, Input, Textarea } from "@/components/ui/field";
 
 import type { ProductBasicFieldsProps } from "./product-basic-fields.types";
-import styles from "./admin.module.scss";
+import styles from "../shared/admin.module.scss";
 
 /**
  * Basic product information fields (name, slug, description)
