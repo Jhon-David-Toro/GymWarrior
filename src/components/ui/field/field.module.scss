@@ -1,0 +1,86 @@
+@use "abstracts" as *;
+
+.field {
+  display: grid;
+  gap: 0.375rem;
+}
+
+.label {
+  font-size: $text-sm;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.control {
+  width: 100%;
+  padding-inline: 0.875rem;
+  font-size: $text-base;
+  color: var(--color-ink);
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  transition:
+    border-color $duration-fast ease,
+    box-shadow $duration-fast ease;
+
+  &::placeholder {
+    color: color-mix(in srgb, var(--color-slate) 70%, transparent);
+  }
+
+  @include hover {
+    border-color: var(--color-mist);
+  }
+
+  &:focus-visible {
+    outline: none;
+    border-color: var(--color-ink);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-volt) 50%, transparent);
+  }
+
+  &[aria-invalid="true"] {
+    border-color: var(--color-signal);
+
+    &:focus-visible {
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-signal) 30%, transparent);
+    }
+  }
+
+  &:disabled {
+    opacity: 0.6;
+  }
+}
+
+.input,
+.select {
+  height: 2.75rem;
+}
+
+.textarea {
+  min-height: 8rem;
+  padding-block: 0.625rem;
+  resize: vertical;
+}
+
+.hint {
+  font-size: $text-sm;
+  color: var(--color-slate);
+}
+
+.error {
+  font-size: $text-sm;
+  font-weight: 500;
+  color: var(--color-signal-text);
+}
+
+.check {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-weight: 500;
+
+  input {
+    width: 1.125rem;
+    height: 1.125rem;
+    accent-color: var(--color-ink);
+  }
+}
