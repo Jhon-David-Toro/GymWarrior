@@ -12,12 +12,9 @@ import { CACHE_TAGS } from "@/server/queries/catalog";
 class CheckoutError extends Error {}
 
 /**
- * Crea un pedido a partir del carrito.
- *
- * - Los precios se leen de la base de datos: el cliente solo envía ids y cantidades.
- * - Las filas de producto se bloquean (`FOR UPDATE`) para evitar vender stock que ya no existe
- *   cuando dos personas compran a la vez.
- * - Todo ocurre en una transacción: o se crea el pedido completo o no se crea nada.
+ * Creates an order from the cart items
+ * @param input - Cart items with product IDs and quantities
+ * @returns Action result with order ID or error
  */
 export async function checkoutAction(
   input: CheckoutInput,
@@ -69,20 +66,20 @@ export async function checkoutAction(
       if (!order) throw new Error("No se pudo crear el pedido");
 
       await tx.insert(schema.orderItem).values(
-        products.map((p) => ({
+        products.map((product) => ({
           orderId: order.id,
-          productId: p.id,
-          productName: p.name,
-          unitPrice: p.price,
-          quantity: quantities.get(p.id) ?? 0,
+          productId: product.id,
+          productName: product.name,
+          unitPrice: product.price,
+          quantity: quantities.get(product.id) ?? 0,
         })),
       );
 
-      for (const p of products) {
+      for (const product of products) {
         await tx
           .update(schema.product)
-          .set({ stock: sql`${schema.product.stock} - ${quantities.get(p.id) ?? 0}` })
-          .where(eq(schema.product.id, p.id));
+          .set({ stock: sql`${schema.product.stock} - ${quantities.get(product.id) ?? 0}` })
+          .where(eq(schema.product.id, product.id));
       }
 
       return order.id;
@@ -92,7 +89,7 @@ export async function checkoutAction(
     return { status: "success", message: "Pedido confirmado.", data: { orderId } };
   } catch (error) {
     if (error instanceof CheckoutError) return { status: "error", message: error.message };
-    console.error("[checkout] error inesperado", error);
+    console.error("[checkout] Unexpected error:", error);
     return {
       status: "error",
       message: "No pudimos procesar el pedido y no se hizo ningún cobro. Inténtalo de nuevo.",

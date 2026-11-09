@@ -53,10 +53,10 @@ export default async function HomePage() {
             <aside className={styles.board} aria-label="Horario">
               <h2>Horario</h2>
               <dl>
-                {SITE.hours.map((h) => (
-                  <div key={h.days}>
-                    <dt>{h.days}</dt>
-                    <dd className="tabular">{h.time}</dd>
+                {SITE.hours.map((schedule) => (
+                  <div key={schedule.days}>
+                    <dt>{schedule.days}</dt>
+                    <dd className="tabular">{schedule.time}</dd>
                   </div>
                 ))}
               </dl>
@@ -107,25 +107,25 @@ export default async function HomePage() {
             description="Profesionales en sala durante todo el horario. Pregúntales lo que quieras: para eso están."
           />
           <ul role="list" className={styles.trainers}>
-            {trainers.map((t) => (
-              <li key={t.id} className={styles.trainer}>
+            {trainers.map((trainer) => (
+              <li key={trainer.id} className={styles.trainer}>
                 <span className={styles.monogram} aria-hidden>
-                  {t.name
+                  {trainer.name
                     .split(" ")
-                    .map((n) => n[0])
+                    .map((namePart) => namePart[0])
                     .join("")
                     .slice(0, 2)}
                 </span>
                 <div>
-                  <h3>{t.name}</h3>
-                  <p className={styles.specialty}>{t.specialty}</p>
-                  <p>{t.bio}</p>
+                  <h3>{trainer.name}</h3>
+                  <p className={styles.specialty}>{trainer.specialty}</p>
+                  <p>{trainer.bio}</p>
                   <ul role="list" className={styles.achievements}>
-                    {t.achievements.map((a) => (
-                      <li key={a}>{a}</li>
+                    {trainer.achievements.map((achievement) => (
+                      <li key={achievement}>{achievement}</li>
                     ))}
                   </ul>
-                  <p className={styles.schedule}>{t.schedule}</p>
+                  <p className={styles.schedule}>{trainer.schedule}</p>
                 </div>
               </li>
             ))}

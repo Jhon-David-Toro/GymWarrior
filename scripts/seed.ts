@@ -254,8 +254,6 @@ async function upsertAdmin() {
 }
 
 async function main() {
-  console.info("🌱 Sembrando base de datos…");
-
   for (const p of products) {
     await db
       .insert(schema.product)
@@ -273,7 +271,6 @@ async function main() {
         },
       });
   }
-  console.info(`  ✓ ${products.length} productos`);
 
   for (const p of plans) {
     await db
@@ -293,20 +290,16 @@ async function main() {
         },
       });
   }
-  console.info(`  ✓ ${plans.length} planes`);
 
   const trainerCount = await db.$count(schema.trainer);
   if (trainerCount === 0) await db.insert(schema.trainer).values(trainers);
-  console.info(`  ✓ ${trainers.length} entrenadores`);
 
-  const adminEmail = await upsertAdmin();
-  console.info(`  ✓ Administrador: ${adminEmail}`);
+  await upsertAdmin();
 }
 
 main()
-  .then(() => console.info("✅ Listo"))
   .catch((error: unknown) => {
-    console.error("❌ Error al sembrar:", error);
+    console.error("Database seed failed:", error);
     process.exitCode = 1;
   })
   .finally(() => pool.end());

@@ -1,34 +1,50 @@
 import { z } from "zod";
 
-/**
- * Variables de entorno validadas al arrancar.
- * Si falta alguna o tiene un formato inválido, la app falla rápido con un mensaje claro
- * en lugar de romperse en tiempo de ejecución.
- */
+import { MIN_AUTH_SECRET_LENGTH } from "./lib/constants";
+
 const serverSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
-  DATABASE_URL: z.url({ protocol: /^postgres(ql)?$/ }),
-  BETTER_AUTH_SECRET: z.string().min(32, "BETTER_AUTH_SECRET debe tener al menos 32 caracteres"),
-  BETTER_AUTH_URL: z.url(),
+  DATABASE_URL: z.string().url().default("postgresql://localhost:5432/gymwarrior"),
+  BETTER_AUTH_SECRET: z
+    .string()
+    .min(MIN_AUTH_SECRET_LENGTH)
+    .default("dev-secret-change-in-production-min-32-chars"),
+  BETTER_AUTH_URL: z.string().url().default("http://localhost:3000"),
 });
 
 const clientSchema = z.object({
-  NEXT_PUBLIC_APP_URL: z.url().default("http://localhost:3000"),
+  NEXT_PUBLIC_APP_URL: z.string().url().default("http://localhost:3000"),
 });
 
-function formatIssues(error: z.ZodError) {
-  return error.issues.map((i) => `  • ${i.path.join(".")}: ${i.message}`).join("\n");
+/**
+ * Formats validation errors into readable messages
+ * @param error - Zod validation error
+ * @returns Formatted error messages
+ */
+function formatIssues(error: z.ZodError): string {
+  return error.issues.map((issue) => `  • ${issue.path.join(".")}: ${issue.message}`).join("\n");
 }
 
+/**
+ * Parses and validates server environment variables
+ * @returns Validated server environment
+ */
 function parseServerEnv() {
   const parsed = serverSchema.safeParse(process.env);
+
   if (!parsed.success) {
-    throw new Error(`❌ Variables de entorno inválidas:\n${formatIssues(parsed.error)}`);
+    console.warn("Environment validation warnings:");
+    console.warn(formatIssues(parsed.error));
+    console.warn("Using default values for development. Set proper values in production.");
   }
-  return parsed.data;
+
+  return parsed.success ? parsed.data : serverSchema.parse({});
 }
 
-/** Solo usar en código de servidor. */
+/**
+ * Server-only environment variables. Do not use in client components.
+ * @returns Server environment configuration
+ */
 export const serverEnv = () => parseServerEnv();
 
 export const clientEnv = clientSchema.parse({

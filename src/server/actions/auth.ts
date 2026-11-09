@@ -27,7 +27,6 @@ export async function signInAction(_prev: ActionState, formData: FormData): Prom
     await auth.api.signInEmail({ body: parsed.data, headers: await headers() });
   } catch (error) {
     if (isAPIError(error)) {
-      // Mensaje genérico: no revelamos si el correo existe.
       return {
         status: "error",
         message: "El correo o la contraseña no son correctos.",
